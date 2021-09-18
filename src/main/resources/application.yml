@@ -5,7 +5,11 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  redis:
+    host: 121.5.165.86
+    port: 6379
+    timeout: 30000
+    database: 1
 
 
 mybatis-plus:
@@ -17,3 +21,4 @@ logging:
 
 initSql: false
 sqlPath: sql/sqldept
+

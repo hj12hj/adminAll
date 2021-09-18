@@ -26,6 +26,11 @@ public class GlobalFilter extends BaseFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String token = httpServletRequest.getHeader("token");
 
+        if (httpServletRequest.getRequestURI().equals("/user/login")){
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         if (token == null) {
             this.handleExceptions(new NoTokenException(), httpServletResponse);
             return;

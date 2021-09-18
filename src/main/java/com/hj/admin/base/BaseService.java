@@ -11,6 +11,4 @@ public interface BaseService {
         result.setData(page.getRecords());
         return  result;
     }
-
-
 }

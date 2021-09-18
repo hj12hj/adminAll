@@ -4,6 +4,7 @@ package com.hj.admin.controller;
 import com.hj.admin.base.BaseController;
 import com.hj.admin.base.Result;
 import com.hj.admin.pojo.UserQuery;
+import com.hj.admin.redis.RedisUtils;
 import com.hj.admin.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,23 @@ public class UserController extends BaseController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RedisUtils redisUtils;
+
 
     @GetMapping("/findOne")
     public Result findOne(UserQuery userQuery, HttpServletRequest request){
 
+        Result result = userService.selectPageVo(userQuery);
 
-        System.out.println(request.getAttribute("id"));
-        return userService.selectPageVo(userQuery);
+//      //  redisUtils.set("user",result);
+//
+//
+//        Result user = (Result)redisUtils.get("user");
+//
+//        System.out.println(user);
+
+        return result;
     }
 
     @GetMapping("/login")

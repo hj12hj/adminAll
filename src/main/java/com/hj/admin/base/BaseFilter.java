@@ -7,6 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+*       过滤器  里抛出的异常无法全局捕捉 在base里处理
+*
+*/
 public abstract class BaseFilter implements Filter {
 
     public void handleExceptions(Exception e, HttpServletResponse response) throws IOException {
@@ -24,7 +28,6 @@ public abstract class BaseFilter implements Filter {
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(s);
         response.flushBuffer();
-
     }
 
     @Override
