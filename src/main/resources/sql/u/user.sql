@@ -20,3 +20,5 @@ create table user
     update_time datetime           not null comment '更新时间'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+INSERT INTO `core`.`user`(`id`, `name`, `pass_word`, `dept_id`, `menu_info`, `phone`, `job`, `version`, `create_by`, `update_by`, `create_time`, `update_time`) VALUES (1, '1111hhh', '1111', 1, 1, '1', '1', 1, 1, 1, '2021-09-18 17:03:18', '2021-09-18 17:03:28');

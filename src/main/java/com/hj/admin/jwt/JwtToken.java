@@ -51,7 +51,7 @@ public class JwtToken {
                 .setSubject(userId)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, KEY)
-                .setExpiration(new Date(exp));
+                .setExpiration(new Date(System.currentTimeMillis()+exp));
 
         if (null!=map) {
             for (String s : map.keySet()) {

@@ -19,6 +19,6 @@ logging:
     com.hj.mapper: debug
 
 
-initSql: false
-sqlPath: sql/sqldept
+initSql: true
+sqlPath: sql
 

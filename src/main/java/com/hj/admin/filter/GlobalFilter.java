@@ -26,6 +26,7 @@ public class GlobalFilter extends BaseFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String token = httpServletRequest.getHeader("token");
 
+        //去除 登录地址
         if (httpServletRequest.getRequestURI().equals("/user/login")){
             filterChain.doFilter(servletRequest, servletResponse);
             return;

@@ -27,22 +27,12 @@ public class UserController extends BaseController {
 
 
     @GetMapping("/findOne")
-    public Result findOne(UserQuery userQuery, HttpServletRequest request){
-
-        Result result = userService.selectPageVo(userQuery);
-
-//      //  redisUtils.set("user",result);
-//
-//
-//        Result user = (Result)redisUtils.get("user");
-//
-//        System.out.println(user);
-
-        return result;
+    public Result findOne(UserQuery userQuery, HttpServletRequest request) {
+        return userService.selectPageVo(userQuery);
     }
 
     @GetMapping("/login")
-    public Result login(UserQuery userQuery){
+    public Result login(UserQuery userQuery) {
         return userService.login(userQuery);
     }
 

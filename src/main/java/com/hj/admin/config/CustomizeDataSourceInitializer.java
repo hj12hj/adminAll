@@ -43,26 +43,10 @@ public class CustomizeDataSourceInitializer implements InitializingBean {
 
 
         try {
+
             File file = classPathResource.getFile();
-            File[] files = file.listFiles();
 
-            for (File file1 : files) {
-
-                String filename =  classPathResource.getPath()+"/"+ file1.getName();
-
-                Resource resource =new ClassPathResource(filename);
-
-                System.out.println("=================="+ filename +"脚本正在执行==================");
-
-
-
-                populator.addScripts(resource);
-
-
-                System.out.println("=================="+ filename +"脚本初始化完成==================");
-
-            }
-
+            excutesql(file,classPathResource,populator);
 
         } catch (IOException e) {
            e.printStackTrace();
@@ -70,6 +54,47 @@ public class CustomizeDataSourceInitializer implements InitializingBean {
 
         return populator;
     }
+
+    private void excutesql(File file,ClassPathResource classPathResource,ResourceDatabasePopulator populator)
+    {
+        if (file.isDirectory())
+        {
+            File[] files = file.listFiles();
+            for (File file1 : files) {
+                excutesql(file1,classPathResource,populator);
+            }
+
+        }
+        else {
+                if (!file.isDirectory()) {
+                    String filename =file.getAbsolutePath(); //classPathResource.getPath() + "/" + file.getName();
+
+
+                    String[] split = filename.split("classes");
+
+
+
+                    filename =split[1].substring(1,split[1].length());
+
+
+                    Resource resource = new ClassPathResource(filename);
+
+                    System.out.println("==================" + filename + "脚本正在执行==================");
+
+
+                    populator.addScripts(resource);
+
+
+                    System.out.println("==================" + filename + "脚本初始化完成==================");
+                }else {
+                    excutesql(file,classPathResource,populator);
+                }
+
+
+        }
+
+    }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
